@@ -120,3 +120,111 @@ console.log("Dolphins score ", avgDolphins);
 console.log("Koalas score ", avgKoalas);
 
 console.log(checkWinner(avgDolphins, avgKoalas));
+
+let temp = [1,2,3,4,5];
+// We can store array inside another array
+let arr = ['Sam', 'Smith', 'Solomon', temp];
+
+console.log(temp);
+console.log(arr);
+
+// push -- adds to the end of the array
+let friends = ['Sumit', 'Heiiba'];
+console.log(friends);
+friends.push('Abhiroop');
+console.log(friends);
+let arrLen = friends.push('absd');
+console.log(arrLen);
+// push() function will return the length of the new array
+
+// unshift -- Adds to the start of the array
+friends.unshift('aisdfgb');
+console.log(friends);
+
+// pop -- removes the last element of the array
+let popped = friends.pop();
+console.log(friends);
+console.log(popped);
+// pop() function will return the element which was removed
+
+// shift -- removes the first element of the array
+let shifted = friends.shift();
+console.log(friends);
+console.log(shifted);
+// shift() function will return the element which was removed
+
+// indexOf -- returns the location of the element i.e. index
+console.log(friends.indexOf('Sumit'));
+
+// includes -- Returns true or false if the element exists - This uses strict equality for checking.
+console.log(friends.includes('Sumit'));
+
+if (friends.includes('Abhiroop'))
+{
+  console.log("Kakashi");
+}
+
+/*
+Coding Challenge #2
+
+Steven is still building his tip calculator, using the same rules as before: Tip 15% of
+the bill if the bill value is between 50 and 300, and if the value is different, the tip is
+20%.
+Your tasks:
+  1. Write a function 'calcTip' that takes any bill value as an input and returns
+  the corresponding tip, calculated based on the rules above (you can check out
+  the code from first tip calculator challenge if you need to). Use the function
+  type you like the most. Test the function using a bill value of 100
+  2. And now let's use arrays! So create an array 'bills' containing the test data
+  below
+  3. Create an array 'tips' containing the tip value for each bill, calculated from
+  the function you created before
+  4. Bonus: Create an array 'total' containing the total values, so the bill + tip
+
+  Test data: 125, 555 and 44
+*/
+
+function calcTip(billValue)
+{
+  if(billValue >= 50 && billValue <= 300)
+  {
+    return 0.15 * billValue;
+  }
+  else 
+  {
+    return 0.20 * billValue;
+  }
+}
+
+let bills = [125, 555, 44];
+let tips = [];
+
+Array.from(bills).forEach((bill) => {
+  tips.push(calcTip(bill));
+})
+
+let totals = [];
+let i=0;
+
+Array.from(bills).forEach((bill) => {
+  totals.push(bill+tips[i++]);
+});
+
+console.log(bills);
+console.log(tips);
+console.log(totals);
+
+// Objects
+let person = {
+  firstName: 'Sudhansu',
+  lastName: 'Maharana',
+  age: 24,
+  job: 'Engineer',
+  friends: ['Retroer','Heiiba','Kakashi']
+};
+console.log(person);
+// There are multiple ways to define objects
+// The above is literal assignment, as every thing is defined inside it
+
+// For accessing object members we have two ways, 1. dot notation 2. bracket notation
+console.log(person.job);
