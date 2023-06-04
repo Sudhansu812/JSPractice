@@ -226,5 +226,28 @@ console.log(person);
 // There are multiple ways to define objects
 // The above is literal assignment, as every thing is defined inside it
 
-// For accessing object members we have two ways, 1. dot notation 2. bracket notation
+// For accessing object members we have two ways, 
+// 1. dot notation 
+// 2. bracket notation
 console.log(person.job);
+console.log(person['firstName']);
+
+//let tempIn = prompt('Property Name: ');
+//console.log(person[tempIn]);
+
+// We can use the bracket notation in conditions as shown below
+let tempIn = prompt('Porperty Name:');
+if (person[tempIn]) {
+  console.log(person[tempIn]);
+} else {
+  console.log('Wrong input');
+}
+
+// We can use both dot and bracket notation to add new properties
+person.location = 'India';
+person['email'] = 'sudhansu@gmail.com';
+console.log(person);
+
+// Challenge
+console.log(`${person.firstName} has ${person.friends.length} friends, and his best friend is called ${person.friends[0]}`);
+
