@@ -184,31 +184,31 @@ Your tasks:
   Test data: 125, 555 and 44
 */
 
-function calcTip(billValue)
-{
-  if(billValue >= 50 && billValue <= 300)
-  {
-    return 0.15 * billValue;
-  }
-  else 
-  {
-    return 0.20 * billValue;
-  }
-}
+// function calcTip(billValue)
+// {
+//   if(billValue >= 50 && billValue <= 300)
+//   {
+//     return 0.15 * billValue;
+//   }
+//   else 
+//   {
+//     return 0.20 * billValue;
+//   }
+// }
 
-let bills = [125, 555, 44];
-let tips = [];
+// let bills = [125, 555, 44];
+// let tips = [];
 
-Array.from(bills).forEach((bill) => {
-  tips.push(calcTip(bill));
-})
+// Array.from(bills).forEach((bill) => {
+//   tips.push(calcTip(bill));
+// })
 
-let totals = [];
-let i=0;
+// let totals = [];
+// let i=0;
 
-Array.from(bills).forEach((bill) => {
-  totals.push(bill+tips[i++]);
-});
+// Array.from(bills).forEach((bill) => {
+//   totals.push(bill+tips[i++]);
+// });
 
 console.log(bills);
 console.log(tips);
@@ -251,3 +251,195 @@ console.log(person);
 // Challenge
 console.log(`${person.firstName} has ${person.friends.length} friends, and his best friend is called ${person.friends[0]}`);
 
+// Object functions
+let objMeth = {
+  name: 'Jonas',
+  hasDriverLicense: false,
+  birthYear: 1999,
+  // calcAge: function(birthYear) {
+  //   return 2023 - birthYear;
+  // }
+  // calcAge: function() {
+  //   return 2023 - this.birthYear;
+  // }
+  calcAge: function() {
+    this.age = 2023 - this.birthYear;
+    return this.age;
+  },
+  getSummary: function() {
+    return `${this.name} is ${this.age} old and ${this.hasDriverLicense === true ? 'has' : 'does not have'} a driver's license.`;
+  }
+}
+
+// console.log('Age: ' + objMeth.calcAge(1999));
+// console.log('Age: ' + objMeth['calcAge'](1999));
+
+console.log('Age: ' + objMeth.calcAge());
+console.log('Age: ' + objMeth['calcAge']());
+console.log('Age: ' + objMeth.age);
+
+console.log(objMeth.getSummary());
+
+/*
+CODING CHALLENGE #3
+
+Let's go back to Mark and John comparing their BMIs!
+
+This time, let's use objects to implement the calculations! Remember: BMI = mass / (height * height) (mass in kg and height in meters).
+
+Your tasks:
+
+For each of them, create an object with properties for their full name, mass, and height (Mark Miller and John Smith). Name these objects as mark and john, and their properties exactly as fullName, mass and height.
+
+Create a calcBMI method on each object to calculate the BMI (the same method on both objects). Assign the BMI value to a property, and also return it from the method.
+
+Log to the console who has the higher BMI, together with the full name and the respective BMI. Example: "John Smith's BMI (28.3) is higher than Mark Miller's (23.9)!".
+
+TEST DATA: Marks weighs 78 kg and is 1.69 m tall. John weighs 92 kg and is 1.95 m tall.
+*/
+
+let mark = {
+  fullName: "Mark Miller",
+  mass: 78,
+  height: 1.69,
+  calcBMI: function() {
+    this.BMI = this.mass / (this.height ** 2);
+    return this.BMI; 
+  }
+};
+
+let john = {
+  fullName: "John Smith",
+  mass: 92,
+  height: 1.95,
+  calcBMI: function() {
+    this.BMI = this.mass / (this.height ** 2);
+    return this.BMI; 
+  }
+};
+
+if (mark.calcBMI() > john.calcBMI()) {
+  console.log(`${mark.fullName}'s BMI (${mark.BMI.toFixed(2)}) is higher than ${john.fullName}'s (${john.BMI.toFixed(2)})!`);
+} 
+else {
+  console.log(`${john.fullName}'s BMI (${john.BMI.toFixed(2)}) is higher than ${mark.fullName}'s (${mark.BMI.toFixed(2)})!`);
+}
+
+// Iterations
+
+for(let i=0;i<10;i++)
+{
+  console.log(`Loop: ${(i+1)}`);
+}
+
+
+let loopPerson = [
+  'Sudhansu',
+  'Maharana',
+  24,
+  'Engineer',
+  ['Retroer','Heiiba','Kakashi']
+];
+
+let copyPerson = [];
+
+for(let i=0; i < loopPerson.length; i++)
+{
+  console.log(loopPerson[i], typeof loopPerson[i]);
+  // Filling the new array with old data
+  // copyPerson[i] = typeof loopPerson[i];
+  copyPerson.push(typeof loopPerson[i]);
+}
+
+console.log(copyPerson);
+
+let years = [1991, 1995, 1999, 2001,2006];
+let ages = [];
+
+for(let i = 0; i< years.length; i++) {
+  ages.push(2027 - years[i]);
+}
+
+console.log(ages);
+
+// continue and break -- These works the same as other languages
+console.log('--- ONLY STRINGS ---');
+for(let i = 0; i < loopPerson.length; i++)
+{
+  if (typeof loopPerson[i] !== 'string')
+  {
+    continue;
+  }
+  console.log(loopPerson[i], typeof loopPerson[i]);
+}
+
+// while loop
+let rep = 0;
+while(rep < 10)
+{
+  console.log("WHILE: ", (rep+1));
+  rep++;
+}
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+while(dice !== 6)
+{
+  console.log(`You rolled a ${dice}`);
+  dice = Math.trunc(Math.random() * 6) + 1;
+}
+
+/*
+Let's improve Steven's tip calculator even more, this time using loops!
+
+Your tasks:
+
+Create an array called bills containing all 10 test bill values.
+
+Create empty arrays for the tips and the totals (tips and totals)
+
+Use the calcTip function we wrote before (included in the starter code) to calculate tips and total values (bill + tip) for every bill value in the bills array. 
+Use a for loop to perform the 10 calculations!
+
+TEST DATA: 22, 295, 176, 440, 37, 105, 10, 1100, 86, and 52.
+
+BONUS:
+
+Write a function calcAverage which takes an array called arr as an argument. This function calculates the average of all numbers in the given array. 
+This is a DIFFICULT challenge (we haven't done this before)! Here is how to solve it if you feel like it:
+
+First, you will need to add up all values in the array. To do the addition, start by creating a variable sum that starts at 0. Then loop over the array using a for loop. 
+In each iteration, add the current value to the sum variable. This way, by the end of the loop, you have all values added together.
+To calculate the average, divide the sum you calculated before by the length of the array (because that's the number of elements).
+Call the function with the totals array.
+*/
+
+let bills = [ 22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+let tips = [];
+let totals = [];
+
+function calcTip(billValue)
+{
+  return billValue >= 50 && billValue ? 0.15 * billValue : 0.20 * billValue;
+}
+
+for(let i=0; i < bills.length; i++)
+{
+  tips.push(calcTip(bills[i]));
+  totals.push(tips[i] + bills[i]);
+}
+
+console.log(bills);
+console.log(tips);
+console.log(totals);
+
+function calcAverage(arr)
+{
+  let sum = 0;
+  for(let i=0; i < arr.length; i++)
+  {
+    sum += arr[i];
+  }
+  return (sum / arr.length);
+}
+
+console.log(`Average: ${calcAverage(bills).toFixed(2)}`);
