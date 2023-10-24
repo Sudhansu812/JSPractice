@@ -33,6 +33,13 @@ h1 {
 	transform: translate(-50%, -50%);
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
 main {
 	height: 65vh;
 	color: #eee;
@@ -42,7 +49,13 @@ main {
 }
 
 .again {
-	position: absolute;
+	position: relative; 
+	top: 2rem;
+	left: 2rem;
+}
+
+.reset {
+	position: relative; 
 	top: 2rem;
 	left: 2rem;
 }
@@ -60,7 +73,7 @@ main {
 	color: #222;
 	font-size: 1.5rem;
 	font-family: inherit;
-	padding: 2rem 2rem;
+	padding: 1.5rem 1.5rem;
 	cursor: pointer;
 }
 
@@ -138,3 +151,5 @@ main {
 	font-family: inherit;
 	padding-top: 1rem;
 }
+
+
