@@ -9,15 +9,20 @@ function generateRandomNumber() {
 	return Math.floor(Math.random() * 20) + 1;
 }
 
+// Clear loose ends with each check event
 function clearHouse() {
 	document.querySelector("#alertText").textContent = null;
 	document.querySelector(".guess").value = null;
+
 	let alertElement = document.getElementById("alertText");
 	alertElement.classList.remove("warning");
 	alertElement.classList.remove("wrongInput");
 	alertElement.classList.remove("winnerText");
+
+	document.querySelector(".number").textContent = "?";
 }
 
+// Restart the game without losing highscore
 function refreshGame() {
 	clearHouse();
 	prizeValue = generateRandomNumber();
@@ -29,6 +34,7 @@ function refreshGame() {
 	document.querySelector("body").style.backgroundColor = "#222";
 }
 
+// Restart the game by resetting everything
 function resetGame() {
 	highScore = 0;
 	document.querySelector(".highscore").textContent = null;
@@ -36,37 +42,51 @@ function resetGame() {
 	document.querySelector("body").style.backgroundColor = "#222";
 }
 
+function displayAlert(displayString) {
+	let alertElement = document.getElementById("alertText");
+	alertElement.textContent = displayString;
+}
+
+function displayAlert(displayString, cssClass) {
+	let alertElement = document.getElementById("alertText");
+	alertElement.classList.add(cssClass);
+	alertElement.textContent = displayString;
+}
+
 function guessNumber(guess) {
 	clearHouse();
-	let alertElement = document.getElementById("alertText");
+	// Empty input
 	if (guess == null || guess == "") {
-		alertElement.classList.add("warning");
-		alertElement.textContent = "Err.. Give me something to work with....";
+		displayAlert("Err.. Give me something to work with....", "warning");
 	} 
+	// Win
 	else if (Number(guess) >= 0 && Number(guess) <= 20 && Number(guess) === prizeValue) {
-		alertElement.classList.add("winnerText");
-		alertElement.textContent = "Fin. Score = " + score;
+		displayAlert(("Fin. Score = " + score), "winnerText");
+		// Check and set highscore
 		highScore = score > highScore ? score : highScore;
 		score = 20;
 		document.querySelector(".highscore").textContent = highScore;
-		// document.querySelector(".score").textContent = highScore;
 		document.getElementById("checkButton").disabled = true;
 		document.getElementById("guessTextBox").disabled = true;
 		document.querySelector("body").style.backgroundColor = "#60b347";
+		document.querySelector(".number").textContent = "✅";
 		return;
-	} 
+	}
+	// Incorrect
 	else if (Number(guess) >= 0 && Number(guess) <= 20 && Number(guess) !== prizeValue) {
-		alertElement.classList.add("warning");
-		alertElement.textContent = Number(guess) < prizeValue ? "Too low!! Try Again." : "Too high!! Try Again.";
+		displayAlert((Number(guess) < prizeValue ? "Too low!! Try Again." : "Too high!! Try Again."), "warning");
 		score--;
+		document.querySelector(".number").textContent = "X";
 	} 
+	// Outside range
 	else {
-		alertElement.classList.add("wrongInput");
-		alertElement.textContent = "Check top right...";
+		displayAlert("Check top right...", "wrongInput");
+		document.querySelector(".number").textContent = "~";
 	}
 	document.querySelector(".score").textContent = score;
 }
 
+// Event Listeners
 document.querySelector(".check").addEventListener("click", function () {
 	guessNumber(document.querySelector(".guess").value);
 });
