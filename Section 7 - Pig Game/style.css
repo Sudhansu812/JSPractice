@@ -122,6 +122,10 @@ main {
     /* box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2); */
 }
 
+.hidden {
+    display: none;
+}
+
 .name {
     position: relative;
     font-size: 4rem;
@@ -171,4 +175,24 @@ main {
     font-weight: 300;
     color: #c7365f;
     margin-bottom: auto;
+}
+
+.win {
+    position: relative;
+    font-size: 4rem;
+    color: chartreuse;
+    word-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 5px;
+    /* padding: 9rem; */
+}
+
+.win--image {
+    height: 30%;
+}
+
+.winimg--1 {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
 }

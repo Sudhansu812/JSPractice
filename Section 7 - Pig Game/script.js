@@ -6,6 +6,7 @@ let playerE2 = document.querySelector(".player--1");
 let scoreEP1 = document.getElementById("score--0");
 let scoreEP2 = document.getElementById("score--1");
 
+let currentDiv = document.getElementsByClassName("current");
 let currentScoreEP1 = document.getElementById("current--0");
 let currentScoreEP2 = document.getElementById("current--1");
 
@@ -15,12 +16,19 @@ let btnNewGame = document.querySelector(".btn--new");
 let btnRollDice = document.querySelector(".btn--roll");
 let btnHold = document.querySelector(".btn--hold");
 
+let winEP1 = document.querySelector(".win--0");
+let winEP2 = document.querySelector(".win--1");
+
+let winImgEP1 = document.getElementsByClassName("winimg--0");
+let winImgEP2 = document.getElementsByClassName("winimg--1");
+
 let currentScoreP1 = 0, currentScoreP2 = 0
     , totalScoreP1 = 0, totalScoreP2 = 0;
 
 let currentActivePlayer = 0;
 
 function init() {
+    currentActivePlayer = 0;
     currentScoreP1 = 0;
     currentScoreP2 = 0;
     totalScoreP1 = 0;
@@ -36,6 +44,17 @@ function init() {
     playerE2.classList.remove("player--winner");
     btnRollDice.disabled = false;
     btnHold.disabled = false;
+    winEP1.classList.add("hidden");
+    winEP2.classList.add("hidden");
+    for(let i = 0; i < currentDiv.length; i++) {
+        currentDiv[i].classList.remove("hidden");
+    }
+    for(let i = 0; i < winImgEP1.length; i++) {
+        winImgEP1[i].classList.add("hidden");
+    }
+    for(let i = 0; i < winImgEP2.length; i++) {
+        winImgEP2[i].classList.add("hidden");
+    }
 }
 
 init();
@@ -108,15 +127,26 @@ function playerWin() {
     {
         totalScoreP1 += currentScoreP1;
         currentScoreEP1.textContent = 0;
-        scoreEP1.textContent = "Win. (" + totalScoreP1 + ")";
+        scoreEP1.textContent = totalScoreP1;
+        winEP1.classList.remove("hidden");
         playerE1.classList.add("player--winner");
+        for(let i = 0; i < winImgEP1.length; i++) {
+            winImgEP1[i].classList.remove("hidden");
+        }
     }
     else
     {
         totalScoreP2 += currentScoreP2;
         currentScoreEP2.textContent = 0;
-        scoreEP2.textContent = "Win. (" + totalScoreP2 + ")";
+        scoreEP2.textContent = totalScoreP2;
+        winEP2.classList.remove("hidden");
         playerE2.classList.add("player--winner");
+        for(let i = 0; i < winImgEP2.length; i++) {
+            winImgEP2[i].classList.remove("hidden");
+        }
+    }
+    for(let i = 0; i < currentDiv.length; i++) {
+        currentDiv[i].classList.add("hidden");
     }
     btnRollDice.disabled = true;
     btnHold.disabled = true;
