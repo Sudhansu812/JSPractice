@@ -73,7 +73,6 @@ function addScore(diceRoll) {
 function rollDice() {
     let diceRoll = Math.floor(Math.random() * 6) + 1;
     dice.src = `dice_${diceRoll}.png`;
-    console.log(diceRoll);
     if (diceRoll == 1)
     {
         switchPlayer();
