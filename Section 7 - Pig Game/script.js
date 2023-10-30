@@ -8,7 +8,6 @@ let scoreEP = [];
 scoreEP[0] = document.getElementById("score--0");
 scoreEP[1] = document.getElementById("score--1");
 
-
 let currentScoreEP = [];
 currentScoreEP[0] = document.getElementById("current--0");
 currentScoreEP[1] = document.getElementById("current--1");
@@ -110,7 +109,7 @@ function playerWin() {
     currentScoreEP[currentActivePlayer].textContent = 0;
     scoreEP[currentActivePlayer].textContent = totalScore[currentActivePlayer];
     winEP[currentActivePlayer].classList.remove("hidden");
-    
+
     for(let i = 0; i < winImgEP[currentActivePlayer].length; i++) {
         winImgEP[currentActivePlayer][i].classList.remove("hidden");
     }
