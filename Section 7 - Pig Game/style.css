@@ -13,7 +13,7 @@ body {
     font-weight: 400;
     height: 100vh;
     color: #333;
-    background: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+    background: linear-gradient(to top left, #db1065 0%, rgb(236, 144, 205) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
