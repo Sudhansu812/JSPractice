@@ -75,7 +75,7 @@ Compilation vs Interpretation
     Hoisting - This makes some variables be accessible/usable in the code before they are actually declared."Variables lifted to the top of the scope"
 
     Type       |Hoisted|   Initial Value   |   Scope
-    Function    |   Y   |   Actual Function |   Black
+    Function    |   Y   |   Actual Function |   Block
     var         |   N   |   undefnied       |   Function
     let/const   |   N   |<uninitialized>,TDZ|   Block
     
@@ -85,25 +85,99 @@ Compilation vs Interpretation
 
     *** this -> Special variable that is created for every execution context (every function).
     Takes value of (points to) the "owner" of the function in which this keyword is used.
+
+    1. Global Context: When this is used in the global scope (outside any function or object), 
+        it refers to the global object, which in a browser environment is usually the window object.
+    2. Function Context: Inside a regular function (a function not defined as a method of an object), this 
+        typically refers to the global object (window in a browser) unless the function is executed 
+        in strict mode ('use strict'), in which case this is undefined.
+    3. Method Context: When a function is called as a method of an object, this refers to the 
+        object that the method is called on.
+    4. Constructor Context: When a function is used as a constructor (using the new keyword), this refers 
+        to the newly created object instance.
+    5. Event Handler Context: In event handler functions, like those used with DOM events, this often 
+        refers to the DOM element that triggered the event.
+    6. Explicit Binding: You can explicitly set the value of this using methods like call(), apply(), 
+        or bind(). These methods allow you to specify the object on which the function should be called.
+    7. Arrow Functions: Arrow functions do not have their own this context. Instead, they inherit 
+        the this value from the surrounding code (lexical scope).
+
+    It's important to be aware of these rules and understand when this might behave differently based 
+    on the context in which it's used. In practice, using this effectively often requires a good 
+    understanding of JavaScript's object-oriented features and how functions are invoked.
 */
 "use strict";
 
-if (1===1)
-{
-    var blockScope = 'Blockvar';
-}
+// if (1===1)
+// {
+//     var blockScope = 'Blockvar';
+// }
 
-function parentFunc()
-{
-    console.log("Parent");
-    function childFunction() {
-        var childVar = 'ChildVar';
-        console.log("Child");
-    }
-    childFunction();
-}
+// function parentFunc()
+// {
+//     console.log("Parent");
+//     function childFunction() {
+//         var childVar = 'ChildVar';
+//         console.log("Child");
+//     }
+//     childFunction();
+// }
 
-parentFunc();
-console.log(blockScore);
+// parentFunc();
+// console.log(blockScore);
 // childFunction(); // This does not work as the child function is also block scoped starting ES6
 // console.log(childVar);
+
+console.log("From global:");
+console.log(this);
+
+function thisCheckFunc()
+{
+    console.log("From inside normal function:");
+    console.log(this);
+}
+
+thisCheckFunc();
+
+const arrowFunc = () => {
+    console.log("From inside arrow:");
+    console.log(this);
+}
+
+arrowFunc();
+
+let thisObj = {
+    data: "Ayoo in an object.",
+    objFunc: function() {
+        console.log("From inside object:");
+        console.log(this);
+    }
+}
+
+thisObj.objFunc();
+console.log(thisObj);
+
+function Person(name) {
+    this.name = name;
+}
+
+const person1 = new Person("Dalala");
+console.log(person1);
+
+document.getElementById("myButton").addEventListener('click', function() {
+    console.log(this.id);
+    console.log(this);
+});
+
+const person = {
+    name: 'Alice',
+    sayHello: function() {
+        console.log(`Hello, ${this.name}`);
+    }
+}
+
+const anotherPerson = {
+    name: 'Bob'
+}
+
+person.sayHello.call(anotherPerson);
