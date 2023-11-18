@@ -4,7 +4,8 @@ What is JS?
 - Garbage collected
 - Interpreted or JIT (Just in time) compiled
 - Multi-paradigm
-    Paradigm - An approach and midset of structuring code which will direct your coding style and technique.
+    Paradigm - An approach and midset of structuring code which will direct your coding
+         style and technique.
     Example:
         1. Procedural
         2. OOP
@@ -22,7 +23,8 @@ What is JS?
     JS runs in one single thread, so it can only do one thing at a time.
     But JS uses event loops below:
 - Event loop concurrency model
-    - This takes log running tasks, executes them in the "backgroup", and puts them back in the main thread once they are finished.
+    - This takes log running tasks, executes them in the "backgroup", and puts them back 
+      in the main thread once they are finished.
 */
 
 /*
@@ -68,11 +70,13 @@ Compilation vs Interpretation
     Types of scope
     Global - Top level
     Function - Local / inside functions
-    Black - Every thing inside curly braces from ES6 (only let and const, var will be global still)
+    Black - Every thing inside curly braces from ES6 (only let and const, 
+        var will be global still)
 
     If strict mode is turned off then variables can then be used outside score as well
 
-    Hoisting - This makes some variables be accessible/usable in the code before they are actually declared."Variables lifted to the top of the scope"
+    Hoisting - This makes some variables be accessible/usable in the code before they 
+    are actually declared."Variables lifted to the top of the scope"
 
     Type       |Hoisted|   Initial Value   |   Scope
     Function    |   Y   |   Actual Function |   Block
@@ -181,3 +185,59 @@ const anotherPerson = {
 }
 
 person.sayHello.call(anotherPerson);
+
+const firstName = "Sudhansu";
+
+const data = {
+    firstName: "Data",
+    printName: function() {
+        console.log(firstName);
+        console.log(this.firstName);
+    },
+    printNameArrow: () => {
+        console.log(firstName);
+        console.log(this.firstName);
+    }
+}
+
+data.printName();
+data.printNameArrow();
+
+// Arguments keyword - This can only be used with regular 
+// functions and can get multiple arguments (old way there is a new way as well)
+const addNumbers = function (a, b) {
+    console.log(arguments);
+    return a + b;
+}
+
+addNumbers(12, 4);
+
+// Datatypes
+const me = {
+    name: 'Sudhansu',
+    age: 24
+}
+console.log(me.age);
+const friend = me;
+friend.age = 25;
+console.log(me.age);
+
+/*
+    Primitive - Number, String, Boolean, Undefined, Null, Symbol, Bigint -> copy kinda
+    Objects - Object literal, arrays, Funcation, etc -> Reference
+
+    -> Primitives will be stored in a stack
+    -> objects will store the reference to the heap address value in stack,
+       the object data is stored in the heap.
+*/
+
+const obj1 = {
+    data: "data1",
+    num: 12
+}
+
+const obj2 = Object.assign({}, obj1); 
+// Shallow copy - Only copies the properties, ie it will copy the values but if the obj
+// has an object init, it will copy the addess to the copy obj.
+// This is not desirable as the copy is meant to not interfare with the original object.
+// in this case if the inner object is chaged in the copy, same will reflect in outer.
