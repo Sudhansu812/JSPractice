@@ -54,7 +54,8 @@ Compilation vs Interpretation
     Code is parsed into an AST (Abstarct syntax tree)
     - Read the code
     - Parsed into AST
-    - Split each line of code into multiple peices like const keywords that are meaningful to the language.
+    - Split each line of code into multiple peices like const keywords that are meaningful 
+        to the language.
         and saving into a tree in a structured way 
     - This tep also checks for syntax errors.
     - Resulting tree will be used to generate machine code
@@ -63,9 +64,11 @@ Compilation vs Interpretation
 
     3. Execution - The AST then is immediately executed.
 
-    JS creates an unoptimized machine code and during execution it keeps recompiling and optimize the code.
+    JS creates an unoptimized machine code and during execution it keeps recompiling 
+        and optimize the code.
     
-    Lexical scopring = Scoping is controlled by placement of functions and blocks in the code
+    Lexical scopring = Scoping is controlled by placement of functions and blocks in 
+        the code
 
     Types of scope
     Global - Top level
